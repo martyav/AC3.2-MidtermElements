@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var pic: UIImageView!
+    @IBOutlet weak var ifPicIsNotAvailable: UILabel!
     
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
@@ -21,6 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var faveIt: UIButton!
     
     var chosenElement: Element?
+    var chosenElementsPic: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,13 @@ class DetailViewController: UIViewController {
             weightLabel.text = "Weight: " + String(element.weight)
             meltingLabel.text = "Melting point: " + String(element.melting) + " ℃"
             boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
-            // img stuff
+        }
+        
+        if chosenElementsPic != nil {
+            pic.image = chosenElementsPic
+        } else {
+            pic.backgroundColor = .black
+            ifPicIsNotAvailable.text = "?"
         }
 
         // Do any additional setup after loading the view.
