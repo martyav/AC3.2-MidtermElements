@@ -25,7 +25,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = chosenElement!.name ?? "Unknown Element"
+        if let element = chosenElement {
+            self.title = element.name
+            symbolLabel.text = "Symbol: " + element.symbol
+            numberLabel.text = "Number: " + String(element.number)
+            weightLabel.text = "Weight: " + String(element.weight)
+            meltingLabel.text = "Melting point: " + String(element.melting) + " ℃"
+            boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
+            // img stuff
+        }
 
         // Do any additional setup after loading the view.
     }

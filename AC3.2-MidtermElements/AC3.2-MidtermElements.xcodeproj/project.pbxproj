@@ -15,6 +15,7 @@
 		D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD91DF9EA0800143E89 /* Element.swift */; };
 		D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */; };
 		D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */; };
+		D352FBE01DFA00B600143E89 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDF1DFA00B600143E89 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D352FBD91DF9EA0800143E89 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		D352FBDF1DFA00B600143E89 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */,
+				D352FBDF1DFA00B600143E89 /* Image.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */,
+				D352FBE01DFA00B600143E89 /* Image.swift in Sources */,
 				D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */,
 				D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */,
 				D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */,
