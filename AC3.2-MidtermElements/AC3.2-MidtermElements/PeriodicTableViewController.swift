@@ -58,7 +58,6 @@ class PeriodicTableViewController: UITableViewController {
         let numOfCells = elements?.count ?? 0
         return numOfCells
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Atom", for: indexPath)
@@ -68,13 +67,13 @@ class PeriodicTableViewController: UITableViewController {
         
         // set the name
         cell.textLabel?.text = thisParticularElement?.name
-        
+        // set the subtitle
+        cell.detailTextLabel?.text = "\(thisParticularElement?.symbol)(\(thisParticularElement?.number)) \(thisParticularElement?.weight)"
         // reset the image to nil
         cell.imageView?.image = nil
         
         // make the call to get the correct image
-//        if (album.images.count > 2) {
-//            APIRequestManager.manager.getData(endPoint: album.images[2].url.absoluteString ) { (data: Data?) in
+//            APIRequestManager.manager.getData(endPoint:  ) { (data: Data?) in
 //                if  let validData = data,
 //                    let validImage = UIImage(data: validData) {
 //                    DispatchQueue.main.async {
@@ -83,8 +82,7 @@ class PeriodicTableViewController: UITableViewController {
 //                    }
 //                }
 //            }
-//        }
-
+//
         return cell
     }
 
