@@ -14,6 +14,7 @@
 		D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */; };
 		D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD91DF9EA0800143E89 /* Element.swift */; };
 		D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */; };
+		D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicTableViewController.swift; sourceTree = "<group>"; };
 		D352FBD91DF9EA0800143E89 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,8 @@
 		D352FBC01DF9E44A00143E89 /* AC3.2-MidtermElements */ = {
 			isa = PBXGroup;
 			children = (
+				D352FBCD1DF9E44A00143E89 /* Info.plist */,
+				D352FBC11DF9E44A00143E89 /* AppDelegate.swift */,
 				D352FBD51DF9E46100143E89 /* Services */,
 				D352FBD61DF9E47000143E89 /* Models */,
 				D352FBD31DF9E45100143E89 /* Controllers */,
@@ -88,8 +92,7 @@
 		D352FBD51DF9E46100143E89 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D352FBCD1DF9E44A00143E89 /* Info.plist */,
-				D352FBC11DF9E44A00143E89 /* AppDelegate.swift */,
+				D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */,
 				D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */,
+				D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */,
 				D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */,
 				D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */,
 			);
