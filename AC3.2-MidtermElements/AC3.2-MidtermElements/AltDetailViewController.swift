@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  AltDetailViewController.swift
 //  AC3.2-MidtermElements
 //
 //  Created by Marty Avedon on 12/8/16.
@@ -8,20 +8,14 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
-    
+class AltDetailViewController: UIViewController {
+
     @IBOutlet weak var pic: UIImageView!
     
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var meltingLabel: UILabel!
-    @IBOutlet weak var boilingLabel: UILabel!
-    
-    @IBOutlet weak var faveIt: UIButton!
-    
-    @IBAction func altTrigger(_ sender: UIButton) {
-    }
+    @IBOutlet weak var nameLabel: UILabel!
     
     var chosenElement: Element?
     
@@ -32,26 +26,24 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         if let element = chosenElement {
-            self.title = element.name
-            symbolLabel.text = "Symbol: " + element.symbol
-            numberLabel.text = "Number: " + String(element.number)
-            weightLabel.text = "Weight: " + String(element.weight)
-            meltingLabel.text = "Melting point: " + String(element.melting) + " ℃"
-            boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
+            nameLabel.text = element.name
+            //symbolLabel.text = element.symbol
+            numberLabel.text = String(element.number)
+            weightLabel.text = String(element.weight)
             let url = URL(string: "https://s3.amazonaws.com/ac3.2-elements/" + element.symbol + bigSuffix)
             downloadImage(url: url!)
         }
     }
     
-//    APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/" + "\(chosenElement!.symbol)" + bigSuffix) { (data: Data?) in
-//        if let validData = data,
-//    let validImage = UIImage(data: validData) {
-//    DispatchQueue.main.async {
-//    pic.imageView?.image = validImage
-//    pic.setNeedsLayout()
-//    }
-//    }
-//    }
+    //    APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/" + "\(chosenElement!.symbol)" + bigSuffix) { (data: Data?) in
+    //        if let validData = data,
+    //    let validImage = UIImage(data: validData) {
+    //    DispatchQueue.main.async {
+    //    pic.imageView?.image = validImage
+    //    pic.setNeedsLayout()
+    //    }
+    //    }
+    //    }
     
     // ok, i am scriptkiddying this rn because i just want images to work.
     // from: https://github.com/martyav/basicSeguesAndImageLoading
@@ -75,21 +67,4 @@ class DetailViewController: UIViewController {
             }
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "detailToAlt" else { return }
-        
-        let destination = segue.destination as! AltDetailViewController
-        destination.chosenElement = self.chosenElement
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

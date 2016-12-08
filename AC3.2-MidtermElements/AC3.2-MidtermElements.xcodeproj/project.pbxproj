@@ -16,6 +16,7 @@
 		D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */; };
 		D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */; };
 		D352FBE01DFA00B600143E89 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDF1DFA00B600143E89 /* Image.swift */; };
+		D3A57C011DFA12C20054A4B9 /* AltDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		D352FBDF1DFA00B600143E89 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */,
 				D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */,
+				D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A57C011DFA12C20054A4B9 /* AltDetailViewController.swift in Sources */,
 				D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */,
 				D352FBE01DFA00B600143E89 /* Image.swift in Sources */,
 				D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */,
@@ -347,6 +351,7 @@
 				D352FBD21DF9E44A00143E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
