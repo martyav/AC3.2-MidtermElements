@@ -14,7 +14,6 @@ class PeriodicTableViewController: UITableViewController {
     let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
     
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
-    let bigSuffix = ".png"
     let thumbSuffix = "_200.png"
     
     var elements: [Element]?
@@ -108,7 +107,6 @@ class PeriodicTableViewController: UITableViewController {
         return cell
     }
     
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -119,7 +117,6 @@ class PeriodicTableViewController: UITableViewController {
         let cell = sender as? UITableViewCell
         if let indexPath = tableView.indexPath(for: cell!) {
             destination.chosenElement = elements?[indexPath.row]
-            destination.chosenElementsPic = cell!.imageView?.image
         }
     }
     

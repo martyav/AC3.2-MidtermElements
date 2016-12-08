@@ -11,7 +11,6 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var pic: UIImageView!
-    @IBOutlet weak var ifPicIsNotAvailable: UILabel!
     
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
@@ -22,7 +21,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var faveIt: UIButton!
     
     var chosenElement: Element?
-    var chosenElementsPic: UIImage?
+    
+    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
+    let bigSuffix = ".png"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +35,45 @@ class DetailViewController: UIViewController {
             weightLabel.text = "Weight: " + String(element.weight)
             meltingLabel.text = "Melting point: " + String(element.melting) + " ℃"
             boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
+            let url = URL(string: "https://s3.amazonaws.com/ac3.2-elements/" + element.symbol + bigSuffix)
+            downloadImage(url: url!)
         }
-        
-        if chosenElementsPic != nil {
-            pic.image = chosenElementsPic
-        } else {
-            pic.backgroundColor = .black
-            ifPicIsNotAvailable.text = "?"
-        }
-
-        // Do any additional setup after loading the view.
     }
     
+//    APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/" + "\(chosenElement!.symbol)" + bigSuffix) { (data: Data?) in
+//        if let validData = data,
+//    let validImage = UIImage(data: validData) {
+//    DispatchQueue.main.async {
+//    pic.imageView?.image = validImage
+//    pic.setNeedsLayout()
+//    }
+//    }
+//    }
+    
+    // ok, i am scriptkiddying this rn because i just want images to work.
+    // from: https://github.com/martyav/basicSeguesAndImageLoading
+    
+    func getDataFrom(url: URL, callback: @escaping (_ data: Data?, _ response: URLResponse?,  _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            callback(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Download Started")
+        getDataFrom(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                // set a remote image for a normal image view
+                self.pic.image = UIImage(data: data)
+            }
+        }
+    }
 
+    
     /*
     // MARK: - Navigation
 
@@ -56,5 +83,4 @@ class DetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
