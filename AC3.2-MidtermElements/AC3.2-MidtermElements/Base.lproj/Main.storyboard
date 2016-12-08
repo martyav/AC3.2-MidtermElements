@@ -82,21 +82,30 @@
                             <constraint firstItem="ebm-gG-EYv" firstAttribute="top" secondItem="mks-h1-Cl5" secondAttribute="bottom" constant="8" id="tUX-ZW-wbj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boilingLabel" destination="mtv-vy-MQN" id="V6C-OJ-xMn"/>
+                        <outlet property="faveIt" destination="PG1-TK-jLg" id="9Ol-Wn-b0A"/>
+                        <outlet property="meltingLabel" destination="OKR-vO-ZeA" id="gIU-sp-EW4"/>
+                        <outlet property="numberLabel" destination="sjO-yK-1px" id="8Tg-mV-GCc"/>
+                        <outlet property="pic" destination="mks-h1-Cl5" id="pYQ-Z2-usi"/>
+                        <outlet property="symbolLabel" destination="DRd-3T-rrG" id="lbx-lg-zqP"/>
+                        <outlet property="weightLabel" destination="jbZ-kj-c62" id="KOS-MY-RM2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Periodic Table View Controller-->
         <scene sceneID="fdX-Up-MBe">
             <objects>
-                <tableViewController id="YPg-R8-Zgq" sceneMemberID="viewController">
+                <tableViewController id="YPg-R8-Zgq" customClass="PeriodicTableViewController" customModule="AC3_2_MidtermElements" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" id="lES-CZ-LYf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="element" textLabel="PUf-tp-xID" detailTextLabel="NbH-u5-4pJ" rowHeight="208" style="IBUITableViewCellStyleSubtitle" id="O7t-gq-3gP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Atom" textLabel="PUf-tp-xID" detailTextLabel="NbH-u5-4pJ" rowHeight="208" style="IBUITableViewCellStyleSubtitle" id="O7t-gq-3gP">
                                 <rect key="frame" x="0.0" y="28" width="375" height="208"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O7t-gq-3gP" id="NDq-DE-kuU">
@@ -124,7 +133,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="tdM-kx-qRW"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="cellToDetail" id="tdM-kx-qRW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBC11DF9E44A00143E89 /* AppDelegate.swift */; };
-		D352FBC41DF9E44A00143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBC31DF9E44A00143E89 /* DetailViewController.swift */; };
 		D352FBC71DF9E44A00143E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D352FBC51DF9E44A00143E89 /* Main.storyboard */; };
 		D352FBC91DF9E44A00143E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D352FBC81DF9E44A00143E89 /* Assets.xcassets */; };
 		D352FBCC1DF9E44A00143E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D352FBCA1DF9E44A00143E89 /* LaunchScreen.storyboard */; };
 		D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */; };
+		D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD91DF9EA0800143E89 /* Element.swift */; };
+		D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D352FBBE1DF9E44A00143E89 /* AC3.2-MidtermElements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AC3.2-MidtermElements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D352FBC11DF9E44A00143E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D352FBC31DF9E44A00143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D352FBC61DF9E44A00143E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D352FBC81DF9E44A00143E89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D352FBCB1DF9E44A00143E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D352FBCD1DF9E44A00143E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicTableViewController.swift; sourceTree = "<group>"; };
+		D352FBD91DF9EA0800143E89 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */,
-				D352FBC31DF9E44A00143E89 /* DetailViewController.swift */,
+				D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -95,6 +97,7 @@
 		D352FBD61DF9E47000143E89 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D352FBD91DF9EA0800143E89 /* Element.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -172,8 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */,
-				D352FBC41DF9E44A00143E89 /* DetailViewController.swift in Sources */,
+				D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */,
 				D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */,
+				D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
