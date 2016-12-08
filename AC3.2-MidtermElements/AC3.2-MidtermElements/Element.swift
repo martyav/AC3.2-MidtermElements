@@ -19,10 +19,10 @@ class Element {
     let symbol: String
     let number: Int
     let weight: Double
-    let melting: Double
-    let boiling: Double
+    let melting: Int
+    let boiling: Int
     
-    init(name: String, symbol:String, number:Int, weight: Double, melting: Double, boiling: Double) {
+    init(name: String, symbol:String, number:Int, weight: Double, melting: Int, boiling: Int) {
         self.name = name
         self.symbol = symbol
         self.number = number
@@ -31,18 +31,29 @@ class Element {
         self.boiling = boiling
     }
     
-    convenience init?(from jsonDict: [String:AnyObject]) {
-        var nameFromDict = ""
-        var symbolFromDict = ""
-        var numberFromDict = 0
-        var weightFromDict = 0.0
-        var meltingFromDict = 0.0
-        var boilingFromDict = 0.0
+    convenience init?(from elementDict: [String:AnyObject]) {
+        //var nameFromDict: String?
+        //var symbolFromDict = "Unknown"
+        //var numberFromDict = 0
+        //var weightFromDict = 0.0
+        //var meltingFromDict = 0
+        //var boilingFromDict = 0
         
-        self.init(name: nameFromDict, symbol: symbolFromDict, number: numberFromDict, weight: weightFromDict, melting: meltingFromDict, boiling: boilingFromDict)
+        guard let nameFromDict = elementDict["name"] as? String else { return nil }
+        
+        if let symbolFromDict = elementDict["symbol"] as? String,
+            let numberFromDict = elementDict["number"] as? Int,
+            let weightFromDict = elementDict["weight"] as? Double,
+            let meltingFromDict = elementDict["melting_c"] as? Int,
+            let boilingFromDict = elementDict["boiling_c"] as? Int {
+        
+            self.init(name: nameFromDict, symbol: symbolFromDict, number: numberFromDict, weight: weightFromDict, melting: meltingFromDict, boiling: boilingFromDict)
+        } else {
+            return nil // i want to do error checking for each key and add dummy values if any of them are empty but for now i just want to make sure this parsing actually goes through
+        }
     }
     
-    static func createElementArr(from data: Data?) -> [Element] {
+    static func createElementArr(from data: Data?) -> [Element]? {
         var newArr: [Element] = []
         
         do {
