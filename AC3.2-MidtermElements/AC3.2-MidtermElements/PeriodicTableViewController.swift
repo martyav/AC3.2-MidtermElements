@@ -119,6 +119,7 @@ class PeriodicTableViewController: UITableViewController {
         let cell = sender as? UITableViewCell
         if let indexPath = tableView.indexPath(for: cell!) {
             destination.chosenElement = elements?[indexPath.row]
+            destination.chosenElementsPic = cell!.imageView?.image
         }
     }
     
