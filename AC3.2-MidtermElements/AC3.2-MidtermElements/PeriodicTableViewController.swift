@@ -21,27 +21,69 @@ class PeriodicTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
+            if let validData = data,
+                let elementArr = Element.createElementArr(from: validData) {
+                self.elements = elementArr
+                
+                DispatchQueue.main.async {
+                    self.tableView?.reloadData()
+                }
+            }
+        }
+        
+        /*
+         let escapedString = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+         APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/search?q=\(escapedString!)&type=album&limit=50") { (data: Data?) in
+         if  let validData = data,
+         let validAlbums = Album.albums(from: validData) {
+         self.albums = validAlbums
+         DispatchQueue.main.async {
+         self.tableView?.reloadData()
+         }
+         }
+         }
+        */
 
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        let numOfCells = elements!.count ?? 0
+        let numOfCells = elements?.count ?? 0
         return numOfCells
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Atom", for: indexPath)
-
-        // Configure the cell...
+        
+        // get a reference to the album in question
+        let thisParticularElement = elements?[indexPath.row]
+        
+        // set the name
+        cell.textLabel?.text = thisParticularElement?.name
+        
+        // reset the image to nil
+        cell.imageView?.image = nil
+        
+        // make the call to get the correct image
+//        if (album.images.count > 2) {
+//            APIRequestManager.manager.getData(endPoint: album.images[2].url.absoluteString ) { (data: Data?) in
+//                if  let validData = data,
+//                    let validImage = UIImage(data: validData) {
+//                    DispatchQueue.main.async {
+//                        cell.imageView?.image = validImage
+//                        cell.setNeedsLayout()
+//                    }
+//                }
+//            }
+//        }
 
         return cell
     }
@@ -51,8 +93,6 @@ class PeriodicTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         guard segue.identifier == "cellToDetail" else { return }
         
         let destination = segue.destination as! DetailViewController
