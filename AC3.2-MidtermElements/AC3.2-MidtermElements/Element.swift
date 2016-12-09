@@ -21,14 +21,22 @@ class Element {
     let weight: Double
     let melting: Int
     let boiling: Int
+    let density: Double
+    let discovery: String
+    let electrons: String
+    let group: Int
     
-    init(name: String, symbol:String, number:Int, weight: Double, melting: Int, boiling: Int) {
+    init(name: String, symbol:String, number:Int, weight: Double, melting: Int, boiling: Int, density: Double, discovered: String, electrons: String, group: Int) {
         self.name = name
         self.symbol = symbol
         self.number = number
         self.weight = weight
         self.melting = melting
         self.boiling = boiling
+        self.density = density
+        self.discovery = discovered
+        self.electrons = electrons
+        self.group = group
     }
     
     convenience init?(from elementDict: [String:AnyObject]) {
@@ -45,9 +53,13 @@ class Element {
             let numberFromDict = elementDict["number"] as? Int,
             let weightFromDict = elementDict["weight"] as? Double,
             let meltingFromDict = elementDict["melting_c"] as? Int,
-            let boilingFromDict = elementDict["boiling_c"] as? Int {
+            let boilingFromDict = elementDict["boiling_c"] as? Int,
+            let densityFromDict = elementDict["density"] as? Double,
+            let discoveredFromDict = elementDict["discovery_year"] as? String,
+            let electronsFromDict = elementDict["electrons"] as? String,
+            let groupFromDict = elementDict["group"] as? Int {
         
-            self.init(name: nameFromDict, symbol: symbolFromDict, number: numberFromDict, weight: weightFromDict, melting: meltingFromDict, boiling: boilingFromDict)
+            self.init(name: nameFromDict, symbol: symbolFromDict, number: numberFromDict, weight: weightFromDict, melting: meltingFromDict, boiling: boilingFromDict, density: densityFromDict, discovered: discoveredFromDict, electrons: electronsFromDict, group: groupFromDict)
         } else {
             return nil // i want to do error checking for each key and add dummy values if any of them are empty but for now i just want to make sure this parsing actually goes through
         }
