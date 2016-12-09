@@ -81,6 +81,7 @@ class DetailViewController: UIViewController {
         
         let destination = segue.destination as! AltDetailViewController
         destination.chosenElement = self.chosenElement
+        destination.chosenPic = self.pic.image
     }
     
     /*
