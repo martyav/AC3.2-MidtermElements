@@ -11,7 +11,6 @@ import UIKit
 class PeriodicTableViewController: UITableViewController {
     
     let getString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/elements"
-    let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
     
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
     let thumbSuffix = "_200.png"
@@ -31,6 +30,8 @@ class PeriodicTableViewController: UITableViewController {
                 }
             }
         }
+        
+        
         
         /*
          let escapedString = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
@@ -86,24 +87,7 @@ class PeriodicTableViewController: UITableViewController {
                 }
             }
         }
-        
-        /*
-         func downloadImage(url: URL) {
-         print("Download Started")
-         getDataFrom(url: url) { (data, response, error)  in
-         guard let data = data, error == nil else { return }
-         print(response?.suggestedFilename ?? url.lastPathComponent)
-         print("Download Finished")
-         DispatchQueue.main.async() { () -> Void in
-         // set a remote image for a normal image view
-         self.photo.image = UIImage(data: data)
-         // set a remote image for the background of a button -- this is useful for when we want to make clickable images, because making image views clickable is kind of a hack and not good for screen readers
-         self.clickableImg.setBackgroundImage(UIImage(data: data), for: .normal)
-         }
-         }
-         }
-        */
-        
+
         return cell
     }
     

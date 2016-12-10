@@ -20,10 +20,10 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var faveIt: UIButton!
     
-    @IBAction func altTrigger(_ sender: UIButton) {
-    }
+    let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
     
     var chosenElement: Element?
+    var element: Element!
     
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
     let bigSuffix = ".png"
@@ -40,6 +40,7 @@ class DetailViewController: UIViewController {
             boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
             let url = URL(string: "https://s3.amazonaws.com/ac3.2-elements/" + element.symbol + bigSuffix)
             downloadImage(url: url!)
+            self.element = element
         }
     }
     
@@ -93,4 +94,27 @@ class DetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func favoriteThis(_ sender: UIButton) {
+        let data: [String: Any] = ["my_name": "Marty", "favorite_element": element.symbol]
+    
+        APIRequestManager.manager.postRequest(endPoint: postString, data: data)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
