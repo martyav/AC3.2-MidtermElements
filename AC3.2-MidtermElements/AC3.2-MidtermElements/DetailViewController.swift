@@ -18,12 +18,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var meltingLabel: UILabel!
     @IBOutlet weak var boilingLabel: UILabel!
     
-    @IBOutlet weak var faveIt: UIButton!
+    @IBOutlet weak var viewAlt: UIButton!
     
     let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
     
     var chosenElement: Element?
-    var element: Element!
+    var bgColor: UIColor?
+    var fontColor: UIColor?
     
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
     let bigSuffix = ".png"
@@ -38,21 +39,18 @@ class DetailViewController: UIViewController {
             weightLabel.text = "Weight: " + String(element.weight)
             meltingLabel.text = "Melting point: " + String(element.melting) + " ℃"
             boilingLabel.text = "Boiling point: " + String(element.boiling) + " ℃"
-            let url = URL(string: "https://s3.amazonaws.com/ac3.2-elements/" + element.symbol + bigSuffix)
+            let url = URL(string: baseImgString + element.symbol + bigSuffix)
             downloadImage(url: url!)
-            self.element = element
+        }
+        
+        if let backgroundColor = bgColor,
+            let textColor = fontColor {
+            viewAlt.backgroundColor = backgroundColor
+            viewAlt.tintColor = textColor
+            viewAlt.layer.borderColor = textColor.cgColor
+            viewAlt.layer.borderWidth = 2
         }
     }
-    
-//    APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/" + "\(chosenElement!.symbol)" + bigSuffix) { (data: Data?) in
-//        if let validData = data,
-//    let validImage = UIImage(data: validData) {
-//    DispatchQueue.main.async {
-//    pic.imageView?.image = validImage
-//    pic.setNeedsLayout()
-//    }
-//    }
-//    }
     
     // ok, i am scriptkiddying this rn because i just want images to work.
     // from: https://github.com/martyav/basicSeguesAndImageLoading
@@ -83,20 +81,12 @@ class DetailViewController: UIViewController {
         let destination = segue.destination as! AltDetailViewController
         destination.chosenElement = self.chosenElement
         destination.chosenPic = self.pic.image
+        destination.bgColor = bgColor
+        destination.fontColor = fontColor
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func favoriteThis(_ sender: UIButton) {
-        let data: [String: Any] = ["my_name": "Marty", "favorite_element": element.symbol]
+        let data: [String: Any] = ["my_name": "Marty", "favorite_element": chosenElement!.symbol]
     
         APIRequestManager.manager.postRequest(endPoint: postString, data: data)
     }
