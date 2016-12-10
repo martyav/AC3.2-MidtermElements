@@ -28,6 +28,9 @@ class AltDetailViewController: UIViewController {
     var bgColor: UIColor?
     var fontColor: UIColor?
     
+    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
+    let bigSuffix = ".png"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +48,8 @@ class AltDetailViewController: UIViewController {
                 discoveryLabel.text = "Discovered in " + element.discovery + " times"
             }
             shellLabel.text = "Electron configuration: " + element.electrons
+            let url = URL(string: baseImgString + element.symbol + bigSuffix)
+            downloadImage(url: url!)
         }
         
         if let backgroundColor = bgColor,
@@ -67,6 +72,26 @@ class AltDetailViewController: UIViewController {
         
         if let image = chosenPic {
             pic.image = image
+        }
+    }
+    
+    func getDataFrom(url: URL, callback: @escaping (_ data: Data?, _ response: URLResponse?,  _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            callback(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Download Started")
+        getDataFrom(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                // set a remote image for a normal image view
+                self.pic.image = UIImage(data: data)
+            }
         }
     }
     

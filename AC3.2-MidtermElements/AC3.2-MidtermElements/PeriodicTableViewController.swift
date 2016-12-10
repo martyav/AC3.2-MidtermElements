@@ -44,44 +44,43 @@ class PeriodicTableViewController: UITableViewController {
         return numOfCells
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Atom", for: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ElementTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Atom", for: indexPath) as! ElementTableViewCell
         
         // get a reference to the album in question
         let thisParticularElement = elements?[indexPath.row]
         // alternate cell colors
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-            cell.textLabel?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
-            cell.detailTextLabel?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            cell.name?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            cell.details?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
 
         } else {
             cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
-            cell.textLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-            cell.detailTextLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.name?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.details?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         }
         // set the name
-        cell.textLabel?.text = thisParticularElement?.name
+        cell.name?.text = thisParticularElement?.name.uppercased()
         
         // set the subtitle
         if let unwrappedSymbol = thisParticularElement?.symbol,
             let unwrappedNumber = thisParticularElement?.number,
             let unwrappedWeight = thisParticularElement?.weight {
-            cell.detailTextLabel?.text = "\(unwrappedSymbol)(\(unwrappedNumber)) \(unwrappedWeight)"
+            cell.details?.text = "\(unwrappedSymbol)(\(unwrappedNumber)) \(unwrappedWeight)"
         }
             
         // reset the image to nil
-        cell.imageView?.image = nil
+        cell.bgImage?.image = nil
         
         // make the call to get the correct image
         APIRequestManager.manager.getData(endPoint: baseImgString + "\(thisParticularElement!.symbol)" + thumbSuffix) { (data: Data?) in
             if  let validData = data,
                 let validImage = UIImage(data: validData) {
                 DispatchQueue.main.async {
-                    cell.imageView?.image = validImage
-                    cell.imageView?.alpha = 0.8
-                    cell.imageView?.layer.cornerRadius = 100
-                    cell.imageView?.layer.masksToBounds = true
+                    cell.bgImage?.image = validImage
+                    cell.bgImage?.alpha = 0.3
+                    cell.bgImage?.layer.masksToBounds = true
                     cell.setNeedsLayout()
                 }
             }
@@ -96,15 +95,15 @@ class PeriodicTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "cellToDetail" else { return }
         
-        let destination = segue.destination as! DetailViewController
+        let destination = segue.destination as! AltDetailViewController
         let cell = sender as? UITableViewCell
         if let indexPath = tableView.indexPath(for: cell!) {
             destination.chosenElement = elements?[indexPath.row]
         }
         
-        if let unwrappedCell = cell {
+        if let unwrappedCell = cell as? ElementTableViewCell {
             destination.bgColor = unwrappedCell.backgroundColor
-            destination.fontColor = unwrappedCell.textLabel?.textColor
+            destination.fontColor = unwrappedCell.name?.textColor
         }
     }
     
