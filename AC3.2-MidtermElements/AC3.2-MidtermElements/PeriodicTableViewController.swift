@@ -6,13 +6,17 @@
 //  Copyright © 2016 Marty Hernandez Avedon. All rights reserved.
 //
 
+// search controller stuff from http://stackoverflow.com/questions/30226835/displaying-search-bar-in-navigation-bar-in-ios-8
+
 import UIKit
 
-class PeriodicTableViewController: UITableViewController {
+class PeriodicTableViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    
+    var searchController : UISearchController!
     
     let getString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/elements"
     
-    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/" // append symbol of element and .png to get the big version of the img. append the symbol, plus '_200' and '.png' to get the thumbnail version
+    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
     let thumbSuffix = "_200.png"
     
     var elements: [Element]?
@@ -20,6 +24,15 @@ class PeriodicTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Breaking Bad Chemistry Set"
+        
+        self.searchController = UISearchController(searchResultsController:  nil)
+        self.searchController.searchResultsUpdater = self
+        self.searchController.delegate = self
+        self.searchController.searchBar.delegate = self
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.dimsBackgroundDuringPresentation = true
+        self.navigationItem.titleView = searchController.searchBar
+        self.definesPresentationContext = true
         
         APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
             if let validData = data,
@@ -32,6 +45,11 @@ class PeriodicTableViewController: UITableViewController {
             }
         }
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+
     
     // MARK: - Table view data source
     
