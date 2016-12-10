@@ -36,17 +36,33 @@ class AltDetailViewController: UIViewController {
         
         if let element = chosenElement {
             nameLabel.text = element.name
-            //symbolLabel.text = element.symbol
             numberLabel.text = String(element.number)
             weightLabel.text = "Atomic weight: " + String(element.weight)
-            meltingLabel.text = "Melts: " + String(element.melting) + "℃"
-            boilingLabel.text = "Boils: " + String(element.boiling) + "℃"
-            densityLabel.text = "Density: " + String(element.density)
+            
+            if element.melting != 0 {
+                meltingLabel.text = "Melts: " + String(element.melting) + "℃"
+            } else {
+                meltingLabel.text = "Melting point unknown"
+            }
+            
+            if element.boiling != 0 {
+                boilingLabel.text = "Boils: " + String(element.boiling) + "℃"
+            } else {
+                boilingLabel.text = "Boiling point unkonown"
+            }
+            
+            if element.density != 0.00 {
+                densityLabel.text = "Density: " + String(element.density)
+            } else {
+                densityLabel.text = "Density unknown"
+            }
+            
             if element.discovery != "ancient" {
                 discoveryLabel.text = "Discovered in " + element.discovery
             } else {
                 discoveryLabel.text = "Discovered in " + element.discovery + " times"
             }
+            
             shellLabel.text = "Electron configuration: " + element.electrons
             let url = URL(string: baseImgString + element.symbol + bigSuffix)
             downloadImage(url: url!)
