@@ -19,6 +19,7 @@ class PeriodicTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Breaking Bad Chemistry Set"
         
         APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
             if let validData = data,
@@ -30,22 +31,6 @@ class PeriodicTableViewController: UITableViewController {
                 }
             }
         }
-        
-        
-        
-        /*
-         let escapedString = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-         APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/search?q=\(escapedString!)&type=album&limit=50") { (data: Data?) in
-         if  let validData = data,
-         let validAlbums = Album.albums(from: validData) {
-         self.albums = validAlbums
-         DispatchQueue.main.async {
-         self.tableView?.reloadData()
-         }
-         }
-         }
-         */
-        
     }
     
     // MARK: - Table view data source
@@ -64,9 +49,20 @@ class PeriodicTableViewController: UITableViewController {
         
         // get a reference to the album in question
         let thisParticularElement = elements?[indexPath.row]
-        
+        // alternate cell colors
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.textLabel?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            cell.detailTextLabel?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+
+        } else {
+            cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            cell.textLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.detailTextLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        }
         // set the name
         cell.textLabel?.text = thisParticularElement?.name
+        
         // set the subtitle
         if let unwrappedSymbol = thisParticularElement?.symbol,
             let unwrappedNumber = thisParticularElement?.number,
@@ -78,11 +74,14 @@ class PeriodicTableViewController: UITableViewController {
         cell.imageView?.image = nil
         
         // make the call to get the correct image
-        APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/" + "\(thisParticularElement!.symbol)" + thumbSuffix) { (data: Data?) in
+        APIRequestManager.manager.getData(endPoint: baseImgString + "\(thisParticularElement!.symbol)" + thumbSuffix) { (data: Data?) in
             if  let validData = data,
                 let validImage = UIImage(data: validData) {
                 DispatchQueue.main.async {
                     cell.imageView?.image = validImage
+                    cell.imageView?.alpha = 0.8
+                    cell.imageView?.layer.cornerRadius = 100
+                    cell.imageView?.layer.masksToBounds = true
                     cell.setNeedsLayout()
                 }
             }
@@ -101,6 +100,11 @@ class PeriodicTableViewController: UITableViewController {
         let cell = sender as? UITableViewCell
         if let indexPath = tableView.indexPath(for: cell!) {
             destination.chosenElement = elements?[indexPath.row]
+        }
+        
+        if let unwrappedCell = cell {
+            destination.bgColor = unwrappedCell.backgroundColor
+            destination.fontColor = unwrappedCell.textLabel?.textColor
         }
     }
     
