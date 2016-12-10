@@ -35,7 +35,7 @@ class AltDetailViewController: UIViewController {
             nameLabel.text = element.name
             //symbolLabel.text = element.symbol
             numberLabel.text = String(element.number)
-            weightLabel.text = "Atomic weight of " + String(element.weight)
+            weightLabel.text = "Atomic weight: " + String(element.weight)
             meltingLabel.text = "Melts: " + String(element.melting) + "℃"
             boilingLabel.text = "Boils: " + String(element.boiling) + "℃"
             densityLabel.text = "Density: " + String(element.density)
