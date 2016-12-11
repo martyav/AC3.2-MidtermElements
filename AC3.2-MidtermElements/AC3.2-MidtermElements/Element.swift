@@ -25,6 +25,68 @@ class Element {
     let discovery: String
     let electrons: String
     let group: Int
+//    var kind: String {
+//        get {
+//            switch self.group {
+//            case 1:
+//                if self.symbol == "H" {
+//                    return "nonmetal"
+//                } else {
+//                    return "alkali metal"
+//                }
+//            case 2:
+//                return "alkaline earth"
+//            case 3...12:
+//                if 57...71 ~= self.number {
+//                    return "lathanide series"
+//                } else if 89...103 ~= self.number {
+//                    return "actinide series"
+//                } else {
+//                    return "transition metal"
+//                }
+//            case 17:
+//                return "halogen"
+//            case 18:
+//                if self.symbol == "He" {
+//                    return ""
+//                } else {
+//                    return "noble gas"
+//                }
+//            default:
+//                return ""
+//            }
+//        }
+//    }
+//    var valenceElectrons: [Int?] {
+//        get {
+//            switch self.group {
+//            case 1:
+//                return [1]
+//            case 2:
+//                return [2]
+//            case 13:
+//                return [3]
+//            case 14:
+//                return [4]
+//            case 15:
+//                return [5]
+//            case 16:
+//                return [6]
+//            case 17:
+//                return [7]
+//            case 18:
+//                if self.symbol == "He" {
+//                    return [1]
+//                } else {
+//                    return [8]
+//                }
+//            case 3...12:
+//                return []
+//            default:
+//                return []
+//            }
+//        }
+//    }
     
     init(name: String, symbol:String, number:Int, weight: Double, discovered: String, group: Int, melting: Int, boiling: Int, density: Double, electrons: String) {
         self.name = name
@@ -117,7 +179,6 @@ class Element {
         catch {
             print("Unknown parsing error")
         }
-
         
         return newArr
     }
