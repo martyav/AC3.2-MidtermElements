@@ -35,7 +35,7 @@ class AltDetailViewController: UIViewController {
         super.viewDidLoad()
         
         if let element = chosenElement {
-            nameLabel.text = element.name
+            nameLabel.text = element.name.uppercased()
             numberLabel.text = String(element.number)
             weightLabel.text = String(element.weight)
             
@@ -80,13 +80,22 @@ class AltDetailViewController: UIViewController {
             //shellLabel.shadowColor = backgroundColor
             weightLabel.textColor = textColor
             //weightLabel.shadowColor = backgroundColor
-            faveButton.tintColor = textColor
-            faveButton.setTitleShadowColor(backgroundColor, for: .normal)
+            faveButton.backgroundColor = textColor
+            faveButton.setTitleColor(backgroundColor, for: .normal)
             
             meltingLabel.textColor = textColor
             boilingLabel.textColor = textColor
             densityLabel.textColor = textColor
             discoveryLabel.textColor = textColor
+            
+            if let outlinedName = nameLabel as? UIOutlinedLabel { outlinedName.outlineColor = backgroundColor
+            }
+            if let outlinedNumber = numberLabel as? UIOutlinedLabel { outlinedNumber.outlineColor = backgroundColor
+            }
+            if let outlinedWeight = weightLabel as? UIOutlinedLabel { outlinedWeight.outlineColor = backgroundColor
+            }
+            if let outlinedShells = shellLabel as? UIOutlinedLabel { outlinedShells.outlineColor = backgroundColor
+            }
         }
         
         if let image = chosenPic {
