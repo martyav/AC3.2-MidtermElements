@@ -37,7 +37,7 @@ class AltDetailViewController: UIViewController {
         if let element = chosenElement {
             nameLabel.text = element.name
             numberLabel.text = String(element.number)
-            weightLabel.text = "Atomic weight: " + String(element.weight)
+            weightLabel.text = String(element.weight)
             
             if element.melting != 0 {
                 meltingLabel.text = "Melts: " + String(element.melting) + "℃"
@@ -63,7 +63,7 @@ class AltDetailViewController: UIViewController {
                 discoveryLabel.text = "Discovered in " + element.discovery + " times"
             }
             
-            shellLabel.text = "Electron configuration: " + element.electrons
+            shellLabel.text = element.electrons
             let url = URL(string: baseImgString + element.symbol + bigSuffix)
             downloadImage(url: url!)
         }
@@ -73,17 +73,20 @@ class AltDetailViewController: UIViewController {
             view.backgroundColor = backgroundColor
             view.tintColor = textColor
             nameLabel.textColor = textColor
-            nameLabel.shadowColor = backgroundColor
+            //nameLabel.shadowColor = backgroundColor
             numberLabel.textColor = textColor
-            numberLabel.shadowColor = backgroundColor
+            //numberLabel.shadowColor = backgroundColor
+            shellLabel.textColor = textColor // .white// textColor
+            //shellLabel.shadowColor = backgroundColor
             weightLabel.textColor = textColor
+            //weightLabel.shadowColor = backgroundColor
+            faveButton.tintColor = textColor
+            faveButton.setTitleShadowColor(backgroundColor, for: .normal)
+            
             meltingLabel.textColor = textColor
             boilingLabel.textColor = textColor
             densityLabel.textColor = textColor
             discoveryLabel.textColor = textColor
-            shellLabel.textColor = textColor
-            faveButton.tintColor = textColor
-            faveButton.setTitleShadowColor(backgroundColor, for: .normal)
         }
         
         if let image = chosenPic {
