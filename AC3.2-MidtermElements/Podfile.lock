@@ -1,0 +1,12 @@
+PODS:
+  - TwicketSegmentedControl (0.1.1)
+
+DEPENDENCIES:
+  - TwicketSegmentedControl
+
+SPEC CHECKSUMS:
+  TwicketSegmentedControl: bbb2d155792dbfcee7fea995a614d0c0a3de4a16
+
+PODFILE CHECKSUM: 514781bb08d598666f82ab4858e518fa1e96506b
+
+COCOAPODS: 1.1.1
