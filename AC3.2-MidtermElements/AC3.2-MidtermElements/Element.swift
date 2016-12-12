@@ -13,7 +13,6 @@ enum ParseError: Error {
     case image(image: Any)
 }
 
-
 class Element {
     let name: String
     let symbol: String
@@ -38,13 +37,7 @@ class Element {
             case 2:
                 return "alkaline earth"
             case 3...12:
-                if 57...71 ~= self.number {
-                    return "lathanide series"
-                } else if 89...103 ~= self.number {
-                    return "actinide series"
-                } else {
-                    return "transition metal"
-                }
+                return "transition metal"
             case 17:
                 return "halogen"
             case 18:
@@ -82,6 +75,10 @@ class Element {
                 default:
                     return "basic metal"
                 }
+            case 101:
+                return "lathanide series"
+            case 102:
+                return "actinide series"
             default:
                 return ""
             }

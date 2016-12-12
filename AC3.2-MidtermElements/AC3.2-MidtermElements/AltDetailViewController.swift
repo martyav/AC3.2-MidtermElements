@@ -41,7 +41,12 @@ class AltDetailViewController: UIViewController {
             numberLabel.text = String(element.number)
             weightLabel.text = String(element.weight)
             
-            kindAndGroup.text = "A group "  + String(element.group) + " \(element.kind)."
+            if element.group < 100 {
+                kindAndGroup.text = "A group "  + String(element.group) + " \(element.kind)."
+            } else {
+                kindAndGroup.text = "A metal in the \(element.kind)."
+            }
+            
             if element.valenceElectrons == nil {
                 valenceLabel.text = "The number of valence electrons varies on context."
             } else {
