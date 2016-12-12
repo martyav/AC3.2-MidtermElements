@@ -25,68 +25,98 @@ class Element {
     let discovery: String
     let electrons: String
     let group: Int
-//    var kind: String {
-//        get {
-//            switch self.group {
-//            case 1:
-//                if self.symbol == "H" {
-//                    return "nonmetal"
-//                } else {
-//                    return "alkali metal"
-//                }
-//            case 2:
-//                return "alkaline earth"
-//            case 3...12:
-//                if 57...71 ~= self.number {
-//                    return "lathanide series"
-//                } else if 89...103 ~= self.number {
-//                    return "actinide series"
-//                } else {
-//                    return "transition metal"
-//                }
-//            case 17:
-//                return "halogen"
-//            case 18:
-//                if self.symbol == "He" {
-//                    return ""
-//                } else {
-//                    return "noble gas"
-//                }
-//            default:
-//                return ""
-//            }
-//        }
-//    }
-//    var valenceElectrons: [Int?] {
-//        get {
-//            switch self.group {
-//            case 1:
-//                return [1]
-//            case 2:
-//                return [2]
-//            case 13:
-//                return [3]
-//            case 14:
-//                return [4]
-//            case 15:
-//                return [5]
-//            case 16:
-//                return [6]
-//            case 17:
-//                return [7]
-//            case 18:
-//                if self.symbol == "He" {
-//                    return [1]
-//                } else {
-//                    return [8]
-//                }
-//            case 3...12:
-//                return []
-//            default:
-//                return []
-//            }
-//        }
-//    }
+    // below properties computed based on info from http://sciencenotes.org/wp-content/uploads/2014/06/PeriodicTableEC-WB.png
+    var kind: String {
+        get {
+            switch self.group {
+            case 1:
+                if self.symbol == "H" {
+                    return "nonmetal"
+                } else {
+                    return "alkali metal"
+                }
+            case 2:
+                return "alkaline earth"
+            case 3...12:
+                if 57...71 ~= self.number {
+                    return "lathanide series"
+                } else if 89...103 ~= self.number {
+                    return "actinide series"
+                } else {
+                    return "transition metal"
+                }
+            case 17:
+                return "halogen"
+            case 18:
+                return "noble gas"
+            case 13:
+                if self.symbol == "B" {
+                    return "semimetal"
+                } else {
+                    return "basic metal"
+                }
+            case 14:
+                switch self.symbol {
+                    case "C":
+                        return "nonmetal"
+                    case "Si", "Ge":
+                        return "semimetal"
+                    default:
+                        return "basic metal"
+                }
+            case 15:
+                switch self.symbol {
+                case "N", "P":
+                    return "nonmetal"
+                case "As", "Sb":
+                    return "semimetal"
+                default:
+                    return "basic metal"
+                }
+            case 16:
+                switch self.symbol {
+                case "S", "O", "Se":
+                    return "nonmetal"
+                case "Te", "Po":
+                    return "semimetal"
+                default:
+                    return "basic metal"
+                }
+            default:
+                return ""
+            }
+        }
+    }
+    var valenceElectrons: Int? {
+        get {
+            switch self.group {
+            case 1:
+                return 1
+            case 2:
+                return 2
+            case 13:
+                return 3
+            case 14:
+                return 4
+            case 15:
+                return 5
+            case 16:
+                return 6
+            case 17:
+                return 7
+            case 18:
+                if self.symbol == "He" {
+                    return 1
+                } else {
+                    return 8
+                }
+            case 3...12:
+                return nil
+            default:
+                return nil
+            }
+        }
+    }
     
     init(name: String, symbol:String, number:Int, weight: Double, discovered: String, group: Int, melting: Int, boiling: Int, density: Double, electrons: String) {
         self.name = name
