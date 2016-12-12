@@ -140,7 +140,8 @@ class AltDetailViewController: UIViewController {
     }
     
     @IBAction func favoriteIt(_ sender: UIButton) {
-        let data: [String: Any] = ["my_name": "Marty", "favorite_element": chosenElement!.symbol]
+        let data: [String: Any] = ["my_name": "Marty", "favorite_element": "My favorite element is \(nameLabel.text!.lowercased()). It is \(kindAndGroup.text!.lowercased())"]
+        dump(data)
         APIRequestManager.manager.postRequest(endPoint: postString, data: data)
     }
 }
