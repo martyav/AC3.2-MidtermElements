@@ -31,6 +31,14 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
         let segmentedControl = TwicketSegmentedControl(frame: frame)
         segmentedControl.setSegmentItems(titles)
         segmentedControl.delegate = self
+        // font
+        segmentedControl.font = UIFont(name: "Futura-Medium", size: 20)!
+        // colors for unselected segments
+        segmentedControl.defaultTextColor = .black
+        segmentedControl.segmentsBackgroundColor = .white
+        // colors for selected segments
+        segmentedControl.highlightTextColor = .black
+        segmentedControl.sliderBackgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
         
         view.addSubview(segmentedControl)
         
@@ -141,5 +149,18 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
 extension PeriodicTableViewController: TwicketSegmentedControlDelegate {
     func didSelect(_ segmentIndex: Int) {
         print("Selected idex: \(segmentIndex)")
+        switch segmentIndex {
+        case 0:
+            elements = elements?.sorted{ $0.number < $1.number }
+        case 1:
+            elements = elements?.sorted{ $0.name < $1.name }
+        case 2:
+            elements = elements?.sorted{ $0.symbol < $1.symbol }
+        default:
+            elements = elements?.sorted{ $0.number < $1.number }
+        }
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+        }
     }
 }
