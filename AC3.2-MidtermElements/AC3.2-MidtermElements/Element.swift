@@ -25,21 +25,113 @@ class Element {
     let discovery: String
     let electrons: String
     let group: Int
+    // below properties computed based on info from http://sciencenotes.org/wp-content/uploads/2014/06/PeriodicTableEC-WB.png
+    var kind: String {
+        get {
+            switch self.group {
+            case 1:
+                if self.symbol == "H" {
+                    return "nonmetal"
+                } else {
+                    return "alkali metal"
+                }
+            case 2:
+                return "alkaline earth"
+            case 3...12:
+                if 57...71 ~= self.number {
+                    return "lathanide series"
+                } else if 89...103 ~= self.number {
+                    return "actinide series"
+                } else {
+                    return "transition metal"
+                }
+            case 17:
+                return "halogen"
+            case 18:
+                return "noble gas"
+            case 13:
+                if self.symbol == "B" {
+                    return "semimetal"
+                } else {
+                    return "basic metal"
+                }
+            case 14:
+                switch self.symbol {
+                    case "C":
+                        return "nonmetal"
+                    case "Si", "Ge":
+                        return "semimetal"
+                    default:
+                        return "basic metal"
+                }
+            case 15:
+                switch self.symbol {
+                case "N", "P":
+                    return "nonmetal"
+                case "As", "Sb":
+                    return "semimetal"
+                default:
+                    return "basic metal"
+                }
+            case 16:
+                switch self.symbol {
+                case "S", "O", "Se":
+                    return "nonmetal"
+                case "Te", "Po":
+                    return "semimetal"
+                default:
+                    return "basic metal"
+                }
+            default:
+                return ""
+            }
+        }
+    }
+    var valenceElectrons: Int? {
+        get {
+            switch self.group {
+            case 1:
+                return 1
+            case 2:
+                return 2
+            case 13:
+                return 3
+            case 14:
+                return 4
+            case 15:
+                return 5
+            case 16:
+                return 6
+            case 17:
+                return 7
+            case 18:
+                if self.symbol == "He" {
+                    return 1
+                } else {
+                    return 8
+                }
+            case 3...12:
+                return nil
+            default:
+                return nil
+            }
+        }
+    }
     
-    init(name: String, symbol:String, number:Int, weight: Double, melting: Int, boiling: Int, density: Double, discovered: String, electrons: String, group: Int) {
+    init(name: String, symbol:String, number:Int, weight: Double, discovered: String, group: Int, melting: Int, boiling: Int, density: Double, electrons: String) {
         self.name = name
         self.symbol = symbol
         self.number = number
         self.weight = weight
+        self.discovery = discovered
+        self.group = group
         self.melting = melting
         self.boiling = boiling
         self.density = density
-        self.discovery = discovered
         self.electrons = electrons
-        self.group = group
     }
     
-    convenience init?(from elementDict: [String:AnyObject]) {
+    init?(from elementDict: [String:AnyObject]) {
         //var nameFromDict: String?
         //var symbolFromDict = "Unknown"
         //var numberFromDict = 0
@@ -47,22 +139,49 @@ class Element {
         //var meltingFromDict = 0
         //var boilingFromDict = 0
         
-        guard let nameFromDict = elementDict["name"] as? String else { return nil }
-        
-        if let symbolFromDict = elementDict["symbol"] as? String,
+        guard let nameFromDict = elementDict["name"] as? String,
             let numberFromDict = elementDict["number"] as? Int,
+            let symbolFromDict = elementDict["symbol"] as? String,
             let weightFromDict = elementDict["weight"] as? Double,
-            let meltingFromDict = elementDict["melting_c"] as? Int,
-            let boilingFromDict = elementDict["boiling_c"] as? Int,
-            let densityFromDict = elementDict["density"] as? Double,
-            let discoveredFromDict = elementDict["discovery_year"] as? String,
-            let electronsFromDict = elementDict["electrons"] as? String,
-            let groupFromDict = elementDict["group"] as? Int {
+            let discoveredFromDict = elementDict["discovery_year"] as? String
+            else { return nil }
         
-            self.init(name: nameFromDict, symbol: symbolFromDict, number: numberFromDict, weight: weightFromDict, melting: meltingFromDict, boiling: boilingFromDict, density: densityFromDict, discovered: discoveredFromDict, electrons: electronsFromDict, group: groupFromDict)
+        self.name = nameFromDict
+        self.number = numberFromDict
+        self.symbol = symbolFromDict
+        self.weight = weightFromDict
+        self.discovery = discoveredFromDict
+    
+        if let meltingFromDict = elementDict["melting_c"] as? Int {
+            self.melting = meltingFromDict
         } else {
-            return nil // i want to do error checking for each key and add dummy values if any of them are empty but for now i just want to make sure this parsing actually goes through
+            self.melting = 000
         }
+        
+        if let boilingFromDict = elementDict["boiling_c"] as? Int {
+            self.boiling = boilingFromDict
+        } else {
+            self.boiling = 000
+        }
+        
+        if let densityFromDict = elementDict["density"] as? Double {
+            self.density = densityFromDict
+        } else {
+            self.density = 0.00
+        }
+        
+        if let electronsFromDict = elementDict["electrons"] as? String {
+            self.electrons = electronsFromDict
+        } else {
+            self.electrons = "Unknown"
+        }
+        
+        if let groupFromDict = elementDict["group"] as? Int {
+            self.group = groupFromDict
+        } else {
+            self.group = 0
+        }
+        
     }
     
     static func createElementArr(from data: Data?) -> [Element]? {
@@ -90,7 +209,6 @@ class Element {
         catch {
             print("Unknown parsing error")
         }
-
         
         return newArr
     }
