@@ -40,7 +40,9 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
         segmentedControl.highlightTextColor = .black
         segmentedControl.sliderBackgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
         
-        view.addSubview(segmentedControl)
+        self.navigationItem.titleView = segmentedControl // used http://stackoverflow.com/a/37070125 to solve the issue with twicket covering first item
+        
+        //view.addSubview(segmentedControl)
         
         /*
          self.searchController = UISearchController(searchResultsController:  nil)
