@@ -9,13 +9,13 @@
 // search controller stuff from http://stackoverflow.com/questions/30226835/displaying-search-bar-in-navigation-bar-in-ios-8
 
 import UIKit
+import TwicketSegmentedControl
 
-class PeriodicTableViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class PeriodicTableViewController: UITableViewController /*, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate*/ {
     
-    var searchController : UISearchController!
+    //var searchController : UISearchController!
     
     let getString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/elements"
-    
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
     let thumbSuffix = "_200.png"
     
@@ -23,16 +23,37 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Breaking Bad Chemistry Set"
+        //self.title = "Breaking Bad Chemistry Set"
         
-        self.searchController = UISearchController(searchResultsController:  nil)
-        self.searchController.searchResultsUpdater = self
-        self.searchController.delegate = self
-        self.searchController.searchBar.delegate = self
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.dimsBackgroundDuringPresentation = true
-        self.navigationItem.titleView = searchController.searchBar
-        self.definesPresentationContext = true
+        let titles = ["by Number", "by Name", "by Symbol"]
+        let frame = CGRect(x: 0, y: view.frame.height/667, width: view.frame.width, height: 40)
+        
+        let segmentedControl = TwicketSegmentedControl(frame: frame)
+        segmentedControl.setSegmentItems(titles)
+        segmentedControl.delegate = self
+        // font
+        segmentedControl.font = UIFont(name: "Futura-Medium", size: 20)!
+        // colors for unselected segments
+        segmentedControl.defaultTextColor = .black
+        segmentedControl.segmentsBackgroundColor = .white
+        // colors for selected segments
+        segmentedControl.highlightTextColor = .black
+        segmentedControl.sliderBackgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+        
+        self.navigationItem.titleView = segmentedControl // used http://stackoverflow.com/a/37070125 to solve the issue with twicket covering first item
+        
+        //view.addSubview(segmentedControl)
+        
+        /*
+         self.searchController = UISearchController(searchResultsController:  nil)
+         self.searchController.searchResultsUpdater = self
+         self.searchController.delegate = self
+         self.searchController.searchBar.delegate = self
+         self.searchController.hidesNavigationBarDuringPresentation = false
+         self.searchController.dimsBackgroundDuringPresentation = true
+         self.navigationItem.titleView = searchController.searchBar
+         self.definesPresentationContext = true
+         */
         
         APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
             if let validData = data,
@@ -45,11 +66,11 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
             }
         }
     }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-
+    /*
+     func updateSearchResults(for searchController: UISearchController) {
+     
+     }
+     */
     
     // MARK: - Table view data source
     
@@ -72,7 +93,7 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
             cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
             cell.name?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
             cell.details?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
-
+            
         } else {
             cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
             cell.name?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -87,7 +108,7 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
             let unwrappedWeight = thisParticularElement?.weight {
             cell.details?.text = "\(unwrappedSymbol)(\(unwrappedNumber)) \(unwrappedWeight)"
         }
-            
+        
         // reset the image to nil
         cell.bgImage?.image = nil
         
@@ -103,7 +124,7 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
                 }
             }
         }
-
+        
         return cell
     }
     
@@ -125,4 +146,23 @@ class PeriodicTableViewController: UITableViewController, UISearchControllerDele
         }
     }
     
+}
+
+extension PeriodicTableViewController: TwicketSegmentedControlDelegate {
+    func didSelect(_ segmentIndex: Int) {
+        print("Selected idex: \(segmentIndex)")
+        switch segmentIndex {
+        case 0:
+            elements = elements?.sorted{ $0.number < $1.number }
+        case 1:
+            elements = elements?.sorted{ $0.name < $1.name }
+        case 2:
+            elements = elements?.sorted{ $0.symbol < $1.symbol }
+        default:
+            elements = elements?.sorted{ $0.number < $1.number }
+        }
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+        }
+    }
 }
