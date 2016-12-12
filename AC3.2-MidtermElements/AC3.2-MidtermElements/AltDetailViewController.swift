@@ -21,6 +21,8 @@ class AltDetailViewController: UIViewController {
     @IBOutlet weak var meltingLabel: UILabel!
     @IBOutlet weak var boilingLabel: UILabel!
     @IBOutlet weak var discoveryLabel: UILabel!
+    @IBOutlet weak var kindAndGroup: UILabel!
+    @IBOutlet weak var valenceLabel: UILabel!
     
     let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
     var chosenElement: Element?
@@ -39,28 +41,39 @@ class AltDetailViewController: UIViewController {
             numberLabel.text = String(element.number)
             weightLabel.text = String(element.weight)
             
+            kindAndGroup.text = "A group "  + String(element.group) + " \(element.kind)."
+            if element.valenceElectrons == nil {
+                valenceLabel.text = "The number of valence electrons varies on context."
+            } else {
+                if element.valenceElectrons! == 1 {
+                    valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + "valence electron."
+                } else {
+                valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + " valence electrons."
+                }
+            }
+            
             if element.melting != 0 {
-                meltingLabel.text = "Melts: " + String(element.melting) + "℃"
+                meltingLabel.text = "Melts at " + String(element.melting) + "℃."
             } else {
                 meltingLabel.text = "Melting point unknown"
             }
             
             if element.boiling != 0 {
-                boilingLabel.text = "Boils: " + String(element.boiling) + "℃"
+                boilingLabel.text = "Boils at " + String(element.boiling) + "℃."
             } else {
-                boilingLabel.text = "Boiling point unkonown"
+                boilingLabel.text = "Boiling point unknown"
             }
             
             if element.density != 0.00 {
-                densityLabel.text = "Density: " + String(element.density)
+                densityLabel.text = "Density of " + String(element.density) + "."
             } else {
                 densityLabel.text = "Density unknown"
             }
             
             if element.discovery != "ancient" {
-                discoveryLabel.text = "Discovered in " + element.discovery
+                discoveryLabel.text = "Discovered in " + element.discovery + "."
             } else {
-                discoveryLabel.text = "Discovered in " + element.discovery + " times"
+                discoveryLabel.text = "Discovered in " + element.discovery + " times."
             }
             
             shellLabel.text = element.electrons
@@ -82,6 +95,9 @@ class AltDetailViewController: UIViewController {
             //weightLabel.shadowColor = backgroundColor
             faveButton.backgroundColor = textColor
             faveButton.setTitleColor(backgroundColor, for: .normal)
+            
+            kindAndGroup.textColor = textColor
+            valenceLabel.textColor = textColor
             
             meltingLabel.textColor = textColor
             boilingLabel.textColor = textColor
