@@ -11,9 +11,7 @@
 import UIKit
 import TwicketSegmentedControl
 
-class PeriodicTableViewController: UITableViewController /*, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate*/ {
-    
-    //var searchController : UISearchController!
+class PeriodicTableViewController: UITableViewController {
     
     let getString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/elements"
     let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
@@ -23,7 +21,19 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = "Breaking Bad Chemistry Set"
+        
+        APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
+            if let validData = data,
+                let elementArr = Element.createElementArr(from: validData) {
+                self.elements = elementArr
+                
+                DispatchQueue.main.async {
+                    self.tableView?.reloadData()
+                }
+            }
+        }
+        
+        // Twicket segmented search controls
         
         let titles = ["by Number", "by Name", "by Symbol"]
         let frame = CGRect(x: 0, y: view.frame.height/667, width: view.frame.width, height: 40)
@@ -40,37 +50,8 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
         segmentedControl.highlightTextColor = .black
         segmentedControl.sliderBackgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
         
-        self.navigationItem.titleView = segmentedControl // used http://stackoverflow.com/a/37070125 to solve the issue with twicket covering first item
-        
-        //view.addSubview(segmentedControl)
-        
-        /*
-         self.searchController = UISearchController(searchResultsController:  nil)
-         self.searchController.searchResultsUpdater = self
-         self.searchController.delegate = self
-         self.searchController.searchBar.delegate = self
-         self.searchController.hidesNavigationBarDuringPresentation = false
-         self.searchController.dimsBackgroundDuringPresentation = true
-         self.navigationItem.titleView = searchController.searchBar
-         self.definesPresentationContext = true
-         */
-        
-        APIRequestManager.manager.getData(endPoint: getString) { (data: Data?) in
-            if let validData = data,
-                let elementArr = Element.createElementArr(from: validData) {
-                self.elements = elementArr
-                
-                DispatchQueue.main.async {
-                    self.tableView?.reloadData()
-                }
-            }
-        }
+        self.navigationItem.titleView = segmentedControl // used http://stackoverflow.com/a/37070125 to solve the issue with twicket covering first cell
     }
-    /*
-     func updateSearchResults(for searchController: UISearchController) {
-     
-     }
-     */
     
     // MARK: - Table view data source
     
@@ -86,9 +67,12 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ElementTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Atom", for: indexPath) as! ElementTableViewCell
         
-        // get a reference to the album in question
+        // get a reference to the element in question
+        
         let thisParticularElement = elements?[indexPath.row]
-        // alternate cell colors
+        
+        // alternate cell colors based on position in table
+        
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
             cell.name?.textColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
@@ -99,10 +83,13 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
             cell.name?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
             cell.details?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         }
+        
         // set the name
+        
         cell.name?.text = thisParticularElement?.name.uppercased()
         
         // set the subtitle
+        
         if let unwrappedSymbol = thisParticularElement?.symbol,
             let unwrappedNumber = thisParticularElement?.number,
             let unwrappedWeight = thisParticularElement?.weight {
@@ -110,16 +97,17 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
         }
         
         // reset the image to nil
+        
         cell.bgImage?.image = nil
         
         // make the call to get the correct image
+        
         APIRequestManager.manager.getData(endPoint: baseImgString + "\(thisParticularElement!.symbol)" + thumbSuffix) { (data: Data?) in
             if  let validData = data,
                 let validImage = UIImage(data: validData) {
                 DispatchQueue.main.async {
                     cell.bgImage?.image = validImage
                     cell.bgImage?.alpha = 0.3
-                    cell.bgImage?.layer.masksToBounds = true
                     cell.setNeedsLayout()
                 }
             }
@@ -130,7 +118,6 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "cellToDetail" else { return }
         
@@ -139,6 +126,8 @@ class PeriodicTableViewController: UITableViewController /*, UISearchControllerD
         if let indexPath = tableView.indexPath(for: cell!) {
             destination.chosenElement = elements?[indexPath.row]
         }
+        
+        // send over color information
         
         if let unwrappedCell = cell as? ElementTableViewCell {
             destination.bgColor = unwrappedCell.backgroundColor
@@ -161,6 +150,9 @@ extension PeriodicTableViewController: TwicketSegmentedControlDelegate {
         default:
             elements = elements?.sorted{ $0.number < $1.number }
         }
+        
+        // reload table so we see sorted relsults immediately
+        
         DispatchQueue.main.async {
             self.tableView?.reloadData()
         }
