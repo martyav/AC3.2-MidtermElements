@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910E4DAD859959AF162A4BA4 /* Pods_AC3_2_MidtermElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B132B37FADE74EC3E9A1E97 /* Pods_AC3_2_MidtermElements.framework */; };
 		D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBC11DF9E44A00143E89 /* AppDelegate.swift */; };
 		D352FBC71DF9E44A00143E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D352FBC51DF9E44A00143E89 /* Main.storyboard */; };
 		D352FBC91DF9E44A00143E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D352FBC81DF9E44A00143E89 /* Assets.xcassets */; };
 		D352FBCC1DF9E44A00143E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D352FBCA1DF9E44A00143E89 /* LaunchScreen.storyboard */; };
 		D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */; };
 		D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBD91DF9EA0800143E89 /* Element.swift */; };
-		D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */; };
 		D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */; };
-		D352FBE01DFA00B600143E89 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352FBDF1DFA00B600143E89 /* Image.swift */; };
 		D3A57C011DFA12C20054A4B9 /* AltDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */; };
+		D3A57C051DFC70C20054A4B9 /* ElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A57C041DFC70C20054A4B9 /* ElementTableViewCell.swift */; };
+		D3A57C071DFCD2200054A4B9 /* OutlinedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A57C061DFCD2200054A4B9 /* OutlinedText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31C0B8240A8741CFC35F2DFC /* Pods-AC3.2-MidtermElements.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AC3.2-MidtermElements.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AC3.2-MidtermElements/Pods-AC3.2-MidtermElements.debug.xcconfig"; sourceTree = "<group>"; };
+		3DFC835F634302A052CE6093 /* Pods-AC3.2-MidtermElements.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AC3.2-MidtermElements.release.xcconfig"; path = "Pods/Target Support Files/Pods-AC3.2-MidtermElements/Pods-AC3.2-MidtermElements.release.xcconfig"; sourceTree = "<group>"; };
+		9B132B37FADE74EC3E9A1E97 /* Pods_AC3_2_MidtermElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AC3_2_MidtermElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D352FBBE1DF9E44A00143E89 /* AC3.2-MidtermElements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AC3.2-MidtermElements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D352FBC11DF9E44A00143E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D352FBC61DF9E44A00143E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,10 +32,10 @@
 		D352FBCD1DF9E44A00143E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicTableViewController.swift; sourceTree = "<group>"; };
 		D352FBD91DF9EA0800143E89 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
-		D352FBDF1DFA00B600143E89 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltDetailViewController.swift; sourceTree = "<group>"; };
+		D3A57C041DFC70C20054A4B9 /* ElementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementTableViewCell.swift; sourceTree = "<group>"; };
+		D3A57C061DFCD2200054A4B9 /* OutlinedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlinedText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				910E4DAD859959AF162A4BA4 /* Pods_AC3_2_MidtermElements.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06D8A458E3913055B1A974EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				31C0B8240A8741CFC35F2DFC /* Pods-AC3.2-MidtermElements.debug.xcconfig */,
+				3DFC835F634302A052CE6093 /* Pods-AC3.2-MidtermElements.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CE951C86B792DC42EADF5E3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B132B37FADE74EC3E9A1E97 /* Pods_AC3_2_MidtermElements.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D352FBB51DF9E44A00143E89 = {
 			isa = PBXGroup;
 			children = (
 				D352FBC01DF9E44A00143E89 /* AC3.2-MidtermElements */,
 				D352FBBF1DF9E44A00143E89 /* Products */,
+				06D8A458E3913055B1A974EA /* Pods */,
+				CE951C86B792DC42EADF5E3B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				D352FBD71DF9E57700143E89 /* PeriodicTableViewController.swift */,
-				D352FBDB1DF9F0F100143E89 /* DetailViewController.swift */,
 				D3A57C001DFA12C20054A4B9 /* AltDetailViewController.swift */,
 			);
 			name = Controllers;
@@ -90,6 +113,8 @@
 				D352FBC51DF9E44A00143E89 /* Main.storyboard */,
 				D352FBC81DF9E44A00143E89 /* Assets.xcassets */,
 				D352FBCA1DF9E44A00143E89 /* LaunchScreen.storyboard */,
+				D3A57C041DFC70C20054A4B9 /* ElementTableViewCell.swift */,
+				D3A57C061DFCD2200054A4B9 /* OutlinedText.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -98,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				D352FBDD1DF9F5DA00143E89 /* APIRequestManager.swift */,
-				D352FBDF1DFA00B600143E89 /* Image.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -118,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D352FBD01DF9E44A00143E89 /* Build configuration list for PBXNativeTarget "AC3.2-MidtermElements" */;
 			buildPhases = (
+				792FA2C4F4AEC8209CF836FA /* [CP] Check Pods Manifest.lock */,
 				D352FBBA1DF9E44A00143E89 /* Sources */,
 				D352FBBB1DF9E44A00143E89 /* Frameworks */,
 				D352FBBC1DF9E44A00143E89 /* Resources */,
+				A9D8018E347442C290937851 /* [CP] Embed Pods Frameworks */,
+				A8131299D7D8AD6DAE8D028E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +205,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		792FA2C4F4AEC8209CF836FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A8131299D7D8AD6DAE8D028E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AC3.2-MidtermElements/Pods-AC3.2-MidtermElements-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9D8018E347442C290937851 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AC3.2-MidtermElements/Pods-AC3.2-MidtermElements-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D352FBBA1DF9E44A00143E89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -185,11 +260,11 @@
 			files = (
 				D3A57C011DFA12C20054A4B9 /* AltDetailViewController.swift in Sources */,
 				D352FBD81DF9E57700143E89 /* PeriodicTableViewController.swift in Sources */,
-				D352FBE01DFA00B600143E89 /* Image.swift in Sources */,
+				D3A57C071DFCD2200054A4B9 /* OutlinedText.swift in Sources */,
 				D352FBDA1DF9EA0800143E89 /* Element.swift in Sources */,
 				D352FBDE1DF9F5DA00143E89 /* APIRequestManager.swift in Sources */,
 				D352FBC21DF9E44A00143E89 /* AppDelegate.swift in Sources */,
-				D352FBDC1DF9F0F100143E89 /* DetailViewController.swift in Sources */,
+				D3A57C051DFC70C20054A4B9 /* ElementTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +385,7 @@
 		};
 		D352FBD11DF9E44A00143E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31C0B8240A8741CFC35F2DFC /* Pods-AC3.2-MidtermElements.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-MidtermElements/Info.plist";
@@ -322,6 +398,7 @@
 		};
 		D352FBD21DF9E44A00143E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC835F634302A052CE6093 /* Pods-AC3.2-MidtermElements.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-MidtermElements/Info.plist";
