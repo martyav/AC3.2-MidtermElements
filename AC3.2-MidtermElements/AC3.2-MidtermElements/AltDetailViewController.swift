@@ -25,13 +25,13 @@ class AltDetailViewController: UIViewController {
     @IBOutlet weak var valenceLabel: UILabel!
     
     let postString = "https://api.fieldbook.com/v1/58488d40b3e2ba03002df662/favorites"
+    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
+    let bigSuffix = ".png"
+    
     var chosenElement: Element?
     var chosenPic: UIImage?
     var bgColor: UIColor?
     var fontColor: UIColor?
-    
-    let baseImgString = "https://s3.amazonaws.com/ac3.2-elements/"
-    let bigSuffix = ".png"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +44,14 @@ class AltDetailViewController: UIViewController {
             if element.group < 100 {
                 kindAndGroup.text = "A group "  + String(element.group) + " \(element.kind)."
             } else {
-                kindAndGroup.text = "A metal in the \(element.kind)."
+                kindAndGroup.text = "A metal in the \(element.kind)." // elements in the lathanide/actinide series aren't numbered in the json data as you would expect
             }
             
             if element.valenceElectrons == nil {
-                valenceLabel.text = "The number of valence electrons varies on context."
+                valenceLabel.text = "The number of valence electrons varies on context." // transition metal atoms vary in how many electrons they use when bonding with other atoms, due to their inner shells actually being involved in certain bonds. The internet says this has to do with quantum mechanics. I'm going to trust it.
             } else {
                 if element.valenceElectrons! == 1 {
-                    valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + "valence electron."
+                    valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + "valence electron." // most elements behave as you'd think, though, following the octet rule you might have learned in high school
                 } else {
                 valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + " valence electrons."
                 }
@@ -94,7 +94,7 @@ class AltDetailViewController: UIViewController {
             //nameLabel.shadowColor = backgroundColor
             numberLabel.textColor = textColor
             //numberLabel.shadowColor = backgroundColor
-            shellLabel.textColor = textColor // .white// textColor
+            shellLabel.textColor = textColor // textColor
             //shellLabel.shadowColor = backgroundColor
             weightLabel.textColor = textColor
             //weightLabel.shadowColor = backgroundColor
@@ -138,7 +138,6 @@ class AltDetailViewController: UIViewController {
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
-                // set a remote image for a normal image view
                 self.pic.image = UIImage(data: data)
             }
         }
