@@ -44,34 +44,34 @@ class Element {
                 return "noble gas"
             case 13:
                 if self.symbol == "B" {
-                    return "semimetal"
+                    return "semi-metal"
                 } else {
                     return "basic metal"
                 }
             case 14:
                 switch self.symbol {
                     case "C":
-                        return "nonmetal"
+                        return "non-metal"
                     case "Si", "Ge":
-                        return "semimetal"
+                        return "semi-metal"
                     default:
                         return "basic metal"
                 }
             case 15:
                 switch self.symbol {
                 case "N", "P":
-                    return "nonmetal"
+                    return "non-metal"
                 case "As", "Sb":
-                    return "semimetal"
+                    return "semi-metal"
                 default:
                     return "basic metal"
                 }
             case 16:
                 switch self.symbol {
                 case "S", "O", "Se":
-                    return "nonmetal"
+                    return "non-metal"
                 case "Te", "Po":
-                    return "semimetal"
+                    return "semi-metal"
                 default:
                     return "basic metal"
                 }
@@ -87,28 +87,14 @@ class Element {
     var valenceElectrons: Int? {
         get {
             switch self.group {
-            case 1:
-                return 1
-            case 2:
-                return 2
-            case 13:
-                return 3
-            case 14:
-                return 4
-            case 15:
-                return 5
-            case 16:
-                return 6
-            case 17:
-                return 7
+            case 1, 2, 13, 14, 15, 16, 17:
+                return self.group % 10
             case 18:
                 if self.symbol == "He" {
                     return 1
                 } else {
                     return 8
                 }
-            case 3...12:
-                return nil
             default:
                 return nil
             }
@@ -129,19 +115,14 @@ class Element {
     }
     
     init?(from elementDict: [String:AnyObject]) {
-        //var nameFromDict: String?
-        //var symbolFromDict = "Unknown"
-        //var numberFromDict = 0
-        //var weightFromDict = 0.0
-        //var meltingFromDict = 0
-        //var boilingFromDict = 0
-        
         guard let nameFromDict = elementDict["name"] as? String,
             let numberFromDict = elementDict["number"] as? Int,
             let symbolFromDict = elementDict["symbol"] as? String,
             let weightFromDict = elementDict["weight"] as? Double,
             let discoveredFromDict = elementDict["discovery_year"] as? String
-            else { return nil }
+            else {
+                return nil
+        }
         
         self.name = nameFromDict
         self.number = numberFromDict
@@ -192,7 +173,7 @@ class Element {
             }
             
             for elementDict in response {
-                if let element = try Element(from: elementDict) {
+                if let element = Element(from: elementDict) {
                     newArr.append(element)
                 }
             }
