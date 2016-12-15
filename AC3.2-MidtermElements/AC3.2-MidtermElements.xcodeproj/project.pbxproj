@@ -15,6 +15,9 @@
 		1E74BF131DF91A210045CF29 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74BF121DF91A210045CF29 /* APIRequestManager.swift */; };
 		1E74BF151DF91EED0045CF29 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74BF141DF91EED0045CF29 /* Element.swift */; };
 		1E74BF171DF929270045CF29 /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74BF161DF929270045CF29 /* ElementViewController.swift */; };
+		D383578C1E030F6C00337886 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383578B1E030F6C00337886 /* TableViewController.swift */; };
+		D383578F1E03103600337886 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383578D1E03103600337886 /* CustomTableViewCell.swift */; };
+		D38357901E03103600337886 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D383578E1E03103600337886 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		1E74BF121DF91A210045CF29 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		1E74BF141DF91EED0045CF29 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		1E74BF161DF929270045CF29 /* ElementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementViewController.swift; sourceTree = "<group>"; };
+		D383578B1E030F6C00337886 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		D383578D1E03103600337886 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D383578E1E03103600337886 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +68,11 @@
 			children = (
 				1E74BEFE1DF919B70045CF29 /* AppDelegate.swift */,
 				1E74BF101DF919FC0045CF29 /* ElementTableViewController.swift */,
+				D383578B1E030F6C00337886 /* TableViewController.swift */,
 				1E74BF121DF91A210045CF29 /* APIRequestManager.swift */,
 				1E74BF021DF919B70045CF29 /* Main.storyboard */,
+				D383578D1E03103600337886 /* CustomTableViewCell.swift */,
+				D383578E1E03103600337886 /* CustomTableViewCell.xib */,
 				1E74BF051DF919B70045CF29 /* Assets.xcassets */,
 				1E74BF071DF919B70045CF29 /* LaunchScreen.storyboard */,
 				1E74BF0A1DF919B70045CF29 /* Info.plist */,
@@ -134,6 +143,7 @@
 			files = (
 				1E74BF091DF919B70045CF29 /* LaunchScreen.storyboard in Resources */,
 				1E74BF061DF919B70045CF29 /* Assets.xcassets in Resources */,
+				D38357901E03103600337886 /* CustomTableViewCell.xib in Resources */,
 				1E74BF041DF919B70045CF29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,7 +156,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E74BF171DF929270045CF29 /* ElementViewController.swift in Sources */,
+				D383578C1E030F6C00337886 /* TableViewController.swift in Sources */,
 				1E74BF131DF91A210045CF29 /* APIRequestManager.swift in Sources */,
+				D383578F1E03103600337886 /* CustomTableViewCell.swift in Sources */,
 				1E74BF111DF919FC0045CF29 /* ElementTableViewController.swift in Sources */,
 				1E74BF151DF91EED0045CF29 /* Element.swift in Sources */,
 				1E74BEFF1DF919B70045CF29 /* AppDelegate.swift in Sources */,
@@ -311,6 +323,7 @@
 				1E74BF0F1DF919B70045CF29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
