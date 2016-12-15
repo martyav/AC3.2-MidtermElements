@@ -30,7 +30,7 @@ class Element {
             switch self.group {
             case 1:
                 if self.symbol == "H" {
-                    return "nonmetal"
+                    return "non-metal"
                 } else {
                     return "alkali metal"
                 }
@@ -151,7 +151,7 @@ class Element {
         if let electronsFromDict = elementDict["electrons"] as? String {
             self.electrons = electronsFromDict
         } else {
-            self.electrons = "Unknown"
+            self.electrons = "Unknown Electron Configuration"
         }
         
         if let groupFromDict = elementDict["group"] as? Int {

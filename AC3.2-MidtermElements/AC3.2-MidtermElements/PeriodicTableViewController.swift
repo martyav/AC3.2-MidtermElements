@@ -151,7 +151,7 @@ extension PeriodicTableViewController: TwicketSegmentedControlDelegate {
             elements = elements?.sorted{ $0.number < $1.number }
         }
         
-        // reload table so we see sorted relsults immediately
+        // reload table so we see sorted results immediately
         
         DispatchQueue.main.async {
             self.tableView?.reloadData()
