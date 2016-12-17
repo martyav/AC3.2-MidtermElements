@@ -10,7 +10,11 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var periodicView: PeriodicTableItem!
     @IBOutlet weak var backgroundPic: UIImageView!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

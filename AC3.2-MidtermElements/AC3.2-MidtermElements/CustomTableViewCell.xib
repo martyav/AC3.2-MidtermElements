@@ -18,29 +18,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3II-0B-f2q">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3II-0B-f2q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRc-us-X9Q">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRc-us-X9Q">
                         <rect key="frame" x="0.0" y="11" width="320" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0tt-xL-WVS" customClass="PeriodicTableItem" customModule="AC3_2_MidtermElements" customModuleProvider="target">
+                        <rect key="frame" x="277" y="0.0" width="43" height="43"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dRc-us-X9Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="4Vg-PF-shv"/>
                     <constraint firstAttribute="trailing" secondItem="dRc-us-X9Q" secondAttribute="trailing" id="CqD-Yq-XS9"/>
                     <constraint firstItem="dRc-us-X9Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ome-k3-U28"/>
-                    <constraint firstAttribute="bottom" secondItem="3II-0B-f2q" secondAttribute="bottom" constant="-61" id="V3t-sR-MaQ"/>
+                    <constraint firstAttribute="bottom" secondItem="3II-0B-f2q" secondAttribute="bottom" id="V3t-sR-MaQ"/>
                     <constraint firstAttribute="bottom" secondItem="dRc-us-X9Q" secondAttribute="bottom" constant="11" id="kjQ-26-pyY"/>
                     <constraint firstItem="3II-0B-f2q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mcL-Lb-aSG"/>
                     <constraint firstAttribute="trailing" secondItem="3II-0B-f2q" secondAttribute="trailing" id="wsk-7G-LLO"/>
-                    <constraint firstItem="3II-0B-f2q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-24" id="x1i-FF-g3q"/>
+                    <constraint firstItem="3II-0B-f2q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="x1i-FF-g3q"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundPic" destination="3II-0B-f2q" id="lT4-c9-bZp"/>
+                <outlet property="periodicView" destination="0tt-xL-WVS" id="BwZ-jQ-RC3"/>
                 <outlet property="title" destination="dRc-us-X9Q" id="i2q-TP-Qlu"/>
             </connections>
         </tableViewCell>

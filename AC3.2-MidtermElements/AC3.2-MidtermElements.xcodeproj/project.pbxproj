@@ -18,6 +18,8 @@
 		D383578C1E030F6C00337886 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383578B1E030F6C00337886 /* TableViewController.swift */; };
 		D383578F1E03103600337886 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383578D1E03103600337886 /* CustomTableViewCell.swift */; };
 		D38357901E03103600337886 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D383578E1E03103600337886 /* CustomTableViewCell.xib */; };
+		D38357921E047B5000337886 /* PeriodicTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38357911E047B5000337886 /* PeriodicTableItem.swift */; };
+		D38357941E047B8400337886 /* PeriodicTableItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38357931E047B8400337886 /* PeriodicTableItem.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		D383578B1E030F6C00337886 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		D383578D1E03103600337886 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D383578E1E03103600337886 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		D38357911E047B5000337886 /* PeriodicTableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicTableItem.swift; sourceTree = "<group>"; };
+		D38357931E047B8400337886 /* PeriodicTableItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeriodicTableItem.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				D383578B1E030F6C00337886 /* TableViewController.swift */,
 				1E74BF121DF91A210045CF29 /* APIRequestManager.swift */,
 				1E74BF021DF919B70045CF29 /* Main.storyboard */,
+				D38357911E047B5000337886 /* PeriodicTableItem.swift */,
+				D38357931E047B8400337886 /* PeriodicTableItem.xib */,
 				D383578D1E03103600337886 /* CustomTableViewCell.swift */,
 				D383578E1E03103600337886 /* CustomTableViewCell.xib */,
 				1E74BF051DF919B70045CF29 /* Assets.xcassets */,
@@ -141,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38357941E047B8400337886 /* PeriodicTableItem.xib in Resources */,
 				1E74BF091DF919B70045CF29 /* LaunchScreen.storyboard in Resources */,
 				1E74BF061DF919B70045CF29 /* Assets.xcassets in Resources */,
 				D38357901E03103600337886 /* CustomTableViewCell.xib in Resources */,
@@ -155,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38357921E047B5000337886 /* PeriodicTableItem.swift in Sources */,
 				1E74BF171DF929270045CF29 /* ElementViewController.swift in Sources */,
 				D383578C1E030F6C00337886 /* TableViewController.swift in Sources */,
 				1E74BF131DF91A210045CF29 /* APIRequestManager.swift in Sources */,

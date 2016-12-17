@@ -54,13 +54,15 @@ class TableViewController: UITableViewController {
         let element = self.elements[indexPath.row]
         cell.title?.text = element.name
         cell.backgroundPic?.image = nil
+        cell.periodicView?.symbol.text = element.symbol
+        cell.periodicView?.weight.text = String(element.weight)
+        cell.periodicView?.number.text = String(element.number)
         
         APIRequestManager.manager.getData(endPoint: "https://s3.amazonaws.com/ac3.2-elements/\(element.symbol)_200.png") { data in
             if  let validData = data,
                 let validImage = UIImage(data: validData) {
                 DispatchQueue.main.async {
                     cell.backgroundPic?.image = validImage
-                    cell.backgroundPic?.alpha = 0.3
                     cell.setNeedsLayout()
                 }
             }
@@ -77,16 +79,4 @@ class TableViewController: UITableViewController {
         
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let evc = segue.destination as? ElementViewController,
-            let cell = sender as? UITableViewCell,
-            let ip = tableView.indexPath(for: cell) {
-            evc.element = elements[ip.row]
-        }
-    }
-    
 }
