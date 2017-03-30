@@ -106,16 +106,14 @@ class PeriodicTableViewController: UITableViewController {
             if  let validData = data,
                 let validImage = UIImage(data: validData) {
                         DispatchQueue.main.async {
-                            if let currentCell = tableView.cellForRow(at: indexPath) {
-                                if cell == currentCell {
-                                    cell.bgImage?.image = validImage
-                                    cell.bgImage?.alpha = 0.3
-                                    cell.setNeedsLayout()
-                                }
+                            if tableView.cellForRow(at: indexPath) != nil {
+                                cell.bgImage?.image = validImage
+                                cell.bgImage?.alpha = 0.3
+                                cell.setNeedsLayout()
                             }
+                        }
                 }
             }
-        }
         
         return cell
     }
