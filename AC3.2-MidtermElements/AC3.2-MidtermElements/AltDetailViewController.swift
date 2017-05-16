@@ -37,67 +37,36 @@ class AltDetailViewController: UIViewController {
         super.viewDidLoad()
         
         if let element = chosenElement {
-            nameLabel.text = element.name.uppercased()
             numberLabel.text = String(element.number)
             weightLabel.text = String(element.weight)
             
-            if element.group < 100 {
-                kindAndGroup.text = "A group "  + String(element.group) + " \(element.kind)."
-            } else {
-                kindAndGroup.text = "A metal in the \(element.kind)." // elements in the lathanide/actinide series aren't numbered in the json data as you would expect
-            }
-            
-            if element.valenceElectrons == nil {
-                valenceLabel.text = "The number of valence electrons varies on context." // transition metal atoms vary in how many electrons they use when bonding with other atoms, due to their inner shells actually being involved in certain bonds. The internet says this has to do with quantum mechanics. I'm going to trust it.
-            } else {
-                if element.valenceElectrons! == 1 {
-                    valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + "valence electron." // most elements behave as you'd think, though, following the octet rule you might have learned in high school
-                } else {
-                valenceLabel.text = "Has " + String(describing: element.valenceElectrons!) + " valence electrons."
-                }
-            }
-            
-            if element.melting != 0 {
-                meltingLabel.text = "Melts at " + String(element.melting) + "℃."
-            } else {
-                meltingLabel.text = "Melting point unknown"
-            }
-            
-            if element.boiling != 0 {
-                boilingLabel.text = "Boils at " + String(element.boiling) + "℃."
-            } else {
-                boilingLabel.text = "Boiling point unknown"
-            }
-            
-            if element.density != 0.00 {
-                densityLabel.text = "Density of " + String(element.density) + "."
-            } else {
-                densityLabel.text = "Density unknown"
-            }
-            
-            if element.discovery != "ancient" {
-                discoveryLabel.text = "Discovered in " + element.discovery + "."
-            } else {
-                discoveryLabel.text = "Discovered in " + element.discovery + " times."
-            }
-            
+            nameLabel.text = element.name.uppercased()
             shellLabel.text = element.electrons
+            
+            kindAndGroup.text = element.group < 100 ? "\(element.name.capitalized) is a group \(element.group) \(element.kind)." : "\(element.name.capitalized) is a  metal in the \(element.kind)." // elements in the lathanide/actinide series aren't numbered in the json data as you would expect
+            valenceLabel.text = element.valenceElectrons == nil ? "The number of valence electrons varies on context." : element.valenceElectrons! == 1 ? "It has \(element.valenceElectrons!) valence electron." : "It has \(element.valenceElectrons!) valence electrons."
+            boilingLabel.text = element.boiling != nil ? "Boils at \(element.boiling!) ℃." : "Boiling point is unknown."
+            meltingLabel.text = element.melting != nil ? "Melts at \(element.melting!) ℃." : "Melting point is unknown."
+            densityLabel.text = element.density != nil ? "Density of \(element.density!) kg/m\u{00B3}." : "Density is unknown."
+            
+            discoveryLabel.text = element.discovery != "ancient" ? "Discovered in \(element.discovery)." : "Discovered in ancient times."
+            
             let url = URL(string: baseImgString + element.symbol + bigSuffix)
+            
             downloadImage(url: url!)
         }
         
         if let backgroundColor = bgColor,
             let textColor = fontColor {
+            self.navigationController?.navigationBar.tintColor = .black
+            
             view.backgroundColor = backgroundColor
             view.tintColor = textColor
+            
             nameLabel.textColor = textColor
-            //nameLabel.shadowColor = backgroundColor
             numberLabel.textColor = textColor
-            //numberLabel.shadowColor = backgroundColor
-            shellLabel.textColor = textColor // textColor
-            //shellLabel.shadowColor = backgroundColor
+            shellLabel.textColor = textColor
             weightLabel.textColor = textColor
-            //weightLabel.shadowColor = backgroundColor
             faveButton.backgroundColor = textColor
             faveButton.setTitleColor(backgroundColor, for: .normal)
             
@@ -109,13 +78,14 @@ class AltDetailViewController: UIViewController {
             densityLabel.textColor = textColor
             discoveryLabel.textColor = textColor
             
-            if let outlinedName = nameLabel as? UIOutlinedLabel { outlinedName.outlineColor = backgroundColor
-            }
-            if let outlinedNumber = numberLabel as? UIOutlinedLabel { outlinedNumber.outlineColor = backgroundColor
-            }
-            if let outlinedWeight = weightLabel as? UIOutlinedLabel { outlinedWeight.outlineColor = backgroundColor
-            }
-            if let outlinedShells = shellLabel as? UIOutlinedLabel { outlinedShells.outlineColor = backgroundColor
+            if let outlinedName = nameLabel as? UIOutlinedLabel,
+                let outlinedNumber = numberLabel as? UIOutlinedLabel,
+                let outlinedWeight = weightLabel as? UIOutlinedLabel,
+                let outlinedShells = shellLabel as? UIOutlinedLabel {
+                    outlinedName.outlineColor = backgroundColor
+                    outlinedNumber.outlineColor = backgroundColor
+                    outlinedWeight.outlineColor = backgroundColor
+                    outlinedShells.outlineColor = backgroundColor
             }
         }
         
