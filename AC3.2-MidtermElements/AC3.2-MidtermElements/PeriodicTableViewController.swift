@@ -96,10 +96,6 @@ class PeriodicTableViewController: UITableViewController {
             cell.details?.text = "\(unwrappedSymbol)(\(unwrappedNumber)) \(unwrappedWeight)"
         }
         
-        // reset the image to nil
-        
-        cell.bgImage?.image = nil
-        
         // make the call to get the correct image
         
         APIRequestManager.manager.getData(endPoint: baseImgString + "\(thisParticularElement!.symbol)" + thumbSuffix) { (data: Data?) in

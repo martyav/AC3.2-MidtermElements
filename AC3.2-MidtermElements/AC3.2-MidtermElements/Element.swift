@@ -18,11 +18,11 @@ class Element {
     let symbol: String
     let number: Int
     let weight: Double
-    let melting: Int
-    let boiling: Int
-    let density: Double
+    let melting: Int?
+    let boiling: Int?
+    let density: Double?
     let discovery: String
-    let electrons: String
+    let electrons: String?
     let group: Int
     // below properties computed based on info from http://sciencenotes.org/wp-content/uploads/2014/06/PeriodicTableEC-WB.png
     var kind: String {
@@ -36,8 +36,6 @@ class Element {
                 }
             case 2:
                 return "alkaline earth"
-            case 3...12:
-                return "transition metal"
             case 17:
                 return "halogen"
             case 18:
@@ -80,10 +78,11 @@ class Element {
             case 102:
                 return "actinide series"
             default:
-                return ""
+                return "transition metal"
             }
         }
     }
+    
     var valenceElectrons: Int? {
         get {
             switch self.group {
@@ -120,9 +119,7 @@ class Element {
             let symbolFromDict = elementDict["symbol"] as? String,
             let weightFromDict = elementDict["weight"] as? Double,
             let discoveredFromDict = elementDict["discovery_year"] as? String
-            else {
-                return nil
-        }
+            else { return nil }
         
         self.name = nameFromDict
         self.number = numberFromDict
@@ -133,25 +130,25 @@ class Element {
         if let meltingFromDict = elementDict["melting_c"] as? Int {
             self.melting = meltingFromDict
         } else {
-            self.melting = 000
+            self.melting = nil
         }
         
         if let boilingFromDict = elementDict["boiling_c"] as? Int {
             self.boiling = boilingFromDict
         } else {
-            self.boiling = 000
+            self.boiling = nil
         }
         
         if let densityFromDict = elementDict["density"] as? Double {
             self.density = densityFromDict
         } else {
-            self.density = 0.00
+            self.density = nil
         }
         
         if let electronsFromDict = elementDict["electrons"] as? String {
             self.electrons = electronsFromDict
         } else {
-            self.electrons = "Unknown Electron Configuration"
+            self.electrons = nil
         }
         
         if let groupFromDict = elementDict["group"] as? Int {
