@@ -15,7 +15,6 @@ class AltDetailViewController: UIViewController {
     
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var shellLabel: UILabel!
     @IBOutlet weak var densityLabel: UILabel!
     @IBOutlet weak var meltingLabel: UILabel!
@@ -40,14 +39,13 @@ class AltDetailViewController: UIViewController {
             numberLabel.text = String(element.number)
             weightLabel.text = String(element.weight)
             
-            nameLabel.text = element.name.uppercased()
             shellLabel.text = element.electrons
             
             kindAndGroup.text = element.group < 100 ? "\(element.name.capitalized) is a group \(element.group) \(element.kind)." : "\(element.name.capitalized) is a  metal in the \(element.kind)." // elements in the lathanide/actinide series aren't numbered in the json data as you would expect
             valenceLabel.text = element.valenceElectrons == nil ? "The number of valence electrons varies on context." : element.valenceElectrons! == 1 ? "It has \(element.valenceElectrons!) valence electron." : "It has \(element.valenceElectrons!) valence electrons."
-            boilingLabel.text = element.boiling != nil ? "Boils at \(element.boiling!) ℃." : "Boiling point is unknown."
-            meltingLabel.text = element.melting != nil ? "Melts at \(element.melting!) ℃." : "Melting point is unknown."
-            densityLabel.text = element.density != nil ? "Density of \(element.density!) kg/m\u{00B3}." : "Density is unknown."
+            boilingLabel.text = element.boiling != nil ? "It boils at \(element.boiling!) ℃." : "Its boiling point is unknown."
+            meltingLabel.text = element.melting != nil ? "It melts at \(element.melting!) ℃." : "Its melting point is unknown."
+            densityLabel.text = element.density != nil ? "\(element.name.capitalized) has a density of \(element.density!) kg/m\u{00B3}." : "Its density is unknown."
             
             discoveryLabel.text = element.discovery != "ancient" ? "Discovered in \(element.discovery)." : "Discovered in ancient times."
             
@@ -63,7 +61,6 @@ class AltDetailViewController: UIViewController {
             view.backgroundColor = backgroundColor
             view.tintColor = textColor
             
-            nameLabel.textColor = textColor
             numberLabel.textColor = textColor
             shellLabel.textColor = textColor
             weightLabel.textColor = textColor
@@ -78,11 +75,9 @@ class AltDetailViewController: UIViewController {
             densityLabel.textColor = textColor
             discoveryLabel.textColor = textColor
             
-            if let outlinedName = nameLabel as? UIOutlinedLabel,
-                let outlinedNumber = numberLabel as? UIOutlinedLabel,
+            if let outlinedNumber = numberLabel as? UIOutlinedLabel,
                 let outlinedWeight = weightLabel as? UIOutlinedLabel,
                 let outlinedShells = shellLabel as? UIOutlinedLabel {
-                    outlinedName.outlineColor = backgroundColor
                     outlinedNumber.outlineColor = backgroundColor
                     outlinedWeight.outlineColor = backgroundColor
                     outlinedShells.outlineColor = backgroundColor
@@ -114,7 +109,7 @@ class AltDetailViewController: UIViewController {
     }
     
     @IBAction func favoriteIt(_ sender: UIButton) {
-        let data: [String: Any] = ["my_name": "Marty", "favorite_element": "My favorite element is \(nameLabel.text!.lowercased()). It is \(kindAndGroup.text!.lowercased())"]
+        let data: [String: Any] = ["my_name": "Marty", "favorite_element": "My favorite element is \(chosenElement?.name). It is \(kindAndGroup.text!.lowercased())"]
         dump(data)
         APIRequestManager.manager.postRequest(endPoint: postString, data: data)
     }
